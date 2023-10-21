@@ -43,7 +43,18 @@ SUPPORTED_PORTS = [
     "silabs",
     "stm",
 ]
-
+INCLUDE_BOARD={
+    "adafruit_feather_rp2040_dvi",
+    "vcc_gnd_yd_rp2040",
+    "yd_esp32_s3_n16r8",
+    "yd_esp32_s3_n16r8",
+    "muselab_nanoesp32_s2_wrover",
+    "muselab_nanoesp32_s2_wroom",
+    "espressif_esp32s2_devkitc_1_n4r2",
+    "espressif_esp32s2_devkitc_1_n4",
+    "luatos_core_esp32c3",
+    "doit_esp32_devkit_v1"
+}
 ALIASES_BY_BOARD = {
     "circuitplayground_express": [
         "circuitplayground_express_4h",
@@ -127,6 +138,8 @@ def get_board_mapping():
             if board_path.is_dir():
                 board_files = os.listdir(board_path.path)
                 board_id = board_path.name
+                if board_id not in INCLUDE_BOARD:
+                    continue
                 aliases = ALIASES_BY_BOARD.get(board_path.name, [])
                 boards[board_id] = {
                     "port": port,
