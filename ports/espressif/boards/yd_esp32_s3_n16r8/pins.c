@@ -50,7 +50,7 @@ STATIC const mp_rom_map_elem_t board_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_GPIO45),   MP_ROM_PTR(&pin_GPIO45) },
 
     { MP_ROM_QSTR(MP_QSTR_GPIO48),   MP_ROM_PTR(&pin_GPIO48) },
-    { MP_ROM_QSTR(MP_QSTR_NEOPIXEL), MP_ROM_PTR(&pin_GPIO48) },
+    { MP_ROM_QSTR(MP_QSTR_NEOPIXEL), MP_ROM_PTR(&pin_GPIO18) },
     // For the neopixel to work, please bridge the "RGB" pad
     // or use external neopixels.
 
