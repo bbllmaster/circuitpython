@@ -78,9 +78,9 @@ void board_init(void) {
     common_hal_displayio_fourwire_construct(
         bus,
         spi,
-        &pin_GPIO39,    // DC
-        &pin_GPIO7,     // CS
-        &pin_GPIO40,    // RST
+        &pin_GPIO14,    // DC
+        &pin_GPIO13,     // CS
+        &pin_GPIO15,    // RST
         40000000,       // baudrate
         0,              // polarity
         0               // phase
@@ -107,7 +107,7 @@ void board_init(void) {
         MIPI_COMMAND_WRITE_MEMORY_START, // write memory command
         display_init_sequence,
         sizeof(display_init_sequence),
-        &pin_GPIO45,    // backlight pin
+        &pin_GPIO17,    // backlight pin
         NO_BRIGHTNESS_COMMAND,
         1.0f,           // brightness
         false,          // single_byte_bounds
@@ -122,12 +122,6 @@ void board_init(void) {
 
 bool espressif_board_reset_pin_number(gpio_num_t pin_number) {
     // Override the I2C/TFT power pin reset to prevent resetting the display.
-    if (pin_number == 21) {
-        // Turn on TFT and I2C
-        gpio_set_direction(pin_number, GPIO_MODE_DEF_OUTPUT);
-        gpio_set_level(pin_number, true);
-        return true;
-    }
     return false;
 }
 
