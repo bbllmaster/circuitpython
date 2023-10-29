@@ -102,7 +102,7 @@ jobs:
   mpy-cross-mac:
     runs-on: macos-11
     needs: scheduler
-    if: false&&needs.scheduler.outputs.ports != '{}'
+    if: false&&false&&needs.scheduler.outputs.ports != '{}'
     env:
       CP_VERSION: ${{ needs.scheduler.outputs.cp-version }}
     steps:
