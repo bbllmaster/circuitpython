@@ -56,7 +56,8 @@ INCLUDE_BOARD={
     "doit_esp32_devkit_v1",
     "adafruit_feather_esp32s2_reverse_tft",
     "adafruit_feather_esp32s2_tft",
-    "adafruit_feather_esp32s3_tft"
+    "adafruit_feather_esp32s3_tft",
+    "adafruit_feather_esp32s3_tft_169"
 }
 ALIASES_BY_BOARD = {
     "circuitplayground_express": [
