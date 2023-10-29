@@ -38,9 +38,10 @@
 #define CIRCUITPY_RGB_STATUS_B      (&pin_GPIO12)
 
 // Default bus pins
-#define DEFAULT_UART_BUS_RX         (&pin_GPIO20)
-#define DEFAULT_UART_BUS_TX         (&pin_GPIO21)
+#define DEFAULT_UART_BUS_RX         (&pin_GPIO44)
+#define DEFAULT_UART_BUS_TX         (&pin_GPIO43)
 
 // Serial over UART
 #define CIRCUITPY_CONSOLE_UART_RX               DEFAULT_UART_BUS_RX
 #define CIRCUITPY_CONSOLE_UART_TX               DEFAULT_UART_BUS_TX
+
