@@ -58,7 +58,8 @@ INCLUDE_BOARD={
     "adafruit_feather_esp32s2_tft",
     "adafruit_feather_esp32s3_tft",
     "adafruit_feather_esp32s3_nopsram",
-    "ai_thinker_esp_12k_nodemcu"
+    "ai_thinker_esp_12k_nodemcu",
+    "adafruit_feather_esp32s3_tft_169"
 }
 ALIASES_BY_BOARD = {
     "circuitplayground_express": [
