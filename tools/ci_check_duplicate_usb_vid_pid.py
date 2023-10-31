@@ -66,7 +66,8 @@ DEFAULT_CLUSTERLIST = {
     "0x2341:0x056B": ["arduino_nano_esp32s3", "arduino_nano_esp32s3_inverted_statusled"],
     "0x2E8A:0x1020": ["waveshare_rp2040_plus_4mb", "waveshare_rp2040_plus_16mb"],
     "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_169"],
-    "0x622B:0x81A7": ["ai_thinker_esp_12h_nodemcu"]
+    "0x622B:0x81A7": ["ai_thinker_esp_12h_nodemcu"],
+    "0x239A:0x8111": ["adafruit_feather_esp32s2_tft_114_16m_8m"]
 }
 
 cli_parser = argparse.ArgumentParser(
