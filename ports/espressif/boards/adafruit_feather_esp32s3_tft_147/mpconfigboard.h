@@ -26,17 +26,17 @@
 
 // Micropython setup
 
-#define MICROPY_HW_BOARD_NAME       "Adafruit Feather ESP32-S3 TFT"
+#define MICROPY_HW_BOARD_NAME       "Adafruit Feather ESP32-S3 Reverse TFT"
 #define MICROPY_HW_MCU_NAME         "ESP32S3"
 
-#define MICROPY_HW_NEOPIXEL (&pin_GPIO18)
+#define MICROPY_HW_NEOPIXEL (&pin_GPIO40)
 
 #define DEFAULT_I2C_BUS_SCL (&pin_GPIO4)
-#define DEFAULT_I2C_BUS_SDA (&pin_GPIO5)
+#define DEFAULT_I2C_BUS_SDA (&pin_GPIO3)
 
-#define DEFAULT_SPI_BUS_SCK (&pin_GPIO14)
-#define DEFAULT_SPI_BUS_MOSI (&pin_GPIO21)
-#define DEFAULT_SPI_BUS_MISO (&pin_GPIO9)
+#define DEFAULT_SPI_BUS_SCK (&pin_GPIO47)
+#define DEFAULT_SPI_BUS_MOSI (&pin_GPIO48)
+#define DEFAULT_SPI_BUS_MISO (&pin_GPI42)
 
 #define DEFAULT_UART_BUS_RX (&pin_GPIO44)
 #define DEFAULT_UART_BUS_TX (&pin_GPIO43)

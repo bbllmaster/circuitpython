@@ -78,9 +78,9 @@ void board_init(void) {
     common_hal_displayio_fourwire_construct(
         bus,
         spi,
-        &pin_GPIO13,    // DC
-        &pin_GPIO11,     // CS
-        &pin_GPIO12,    // RST
+        &pin_GPIO39,    // DC
+        &pin_GPIO38,    // CS
+        &pin_GPIO21,    // RST
         40000000,       // baudrate
         0,              // polarity
         0               // phase
@@ -91,10 +91,10 @@ void board_init(void) {
     common_hal_displayio_display_construct(
         display,
         bus,
-        240,            // width (after rotation)
-        135,            // height (after rotation)
-        40,             // column start
-        53,             // row start
+        320,            // width (after rotation)
+        172,            // height (after rotation)
+        0,             // column start
+        0,             // row start
         0,              // rotation
         16,             // color depth
         false,          // grayscale
@@ -107,9 +107,9 @@ void board_init(void) {
         MIPI_COMMAND_WRITE_MEMORY_START, // write memory command
         display_init_sequence,
         sizeof(display_init_sequence),
-        &pin_GPIO10,    // backlight pin
+        &pin_GPIO41,    // backlight pin
         NO_BRIGHTNESS_COMMAND,
-        0.5f,           // brightness
+        0.6f,           // brightness
         false,          // single_byte_bounds
         false,          // data_as_commands
         true,           // auto_refresh
