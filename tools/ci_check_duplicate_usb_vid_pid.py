@@ -68,7 +68,7 @@ DEFAULT_CLUSTERLIST = {
     "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_169"],
     "0x622B:0x81A7": ["ai_thinker_esp_12h_nodemcu"],
     "0x239A:0x8111": ["adafruit_feather_esp32s2_tft_114_16m_8m"],
-    "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_147"]
+    "0x249A:0x813E": ["adafruit_feather_esp32s3_tft_147"]
 }
 
 cli_parser = argparse.ArgumentParser(
