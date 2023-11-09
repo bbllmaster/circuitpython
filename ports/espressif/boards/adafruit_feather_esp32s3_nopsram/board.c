@@ -93,7 +93,7 @@ void board_init(void) {
         bus,
         280,            // width (after rotation)
         240,            // height (after rotation)
-        0,             // column start
+        20,             // column start
         0,             // row start
         0,              // rotation
         16,             // color depth
