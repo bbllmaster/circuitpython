@@ -29,7 +29,7 @@
 #define MICROPY_HW_BOARD_NAME       "Adafruit Feather ESP32-S2 TFT"
 #define MICROPY_HW_MCU_NAME         "ESP32S2"
 
-#define MICROPY_HW_NEOPIXEL (&pin_GPIO18)
+//#define MICROPY_HW_NEOPIXEL (&pin_GPIO18)
 //#define CIRCUITPY_STATUS_LED_POWER (&pin_GPIO34)
 
 //#define MICROPY_HW_LED_STATUS (&pin_GPIO13)
