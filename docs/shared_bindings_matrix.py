@@ -65,6 +65,7 @@ INCLUDE_BOARD={
     "adafruit_feather_esp32s2_tft_114_nopsram",
     "adafruit_feather_esp32s3_tft_114",
     "adafruit_feather_esp32s3_tft_147",
+    "adafruit_feather_esp32s3_tft_147_2mpsram",
     "adafruit_feather_esp32s3_tft_169"
 }
 ALIASES_BY_BOARD = {
