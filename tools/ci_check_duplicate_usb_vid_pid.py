@@ -71,6 +71,7 @@ DEFAULT_CLUSTERLIST = {
     "0x249A:0x8141": ["adafruit_feather_esp32s2_tft_114_nopsram"],
     "0x249A:0x843E": ["adafruit_feather_esp32s3_tft_114"],
     "0x249A:0x823E": ["adafruit_feather_esp32s3_tft_147"],
+    "0x249A:0x824E": ["adafruit_feather_esp32s3_tft_147_2mpsram"],
     "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_169"]
 }
 
