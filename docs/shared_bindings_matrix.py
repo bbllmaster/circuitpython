@@ -66,7 +66,9 @@ INCLUDE_BOARD={
     "adafruit_feather_esp32s3_tft_114",
     "adafruit_feather_esp32s3_tft_147",
     "adafruit_feather_esp32s3_tft_147_2mpsram",
-    "adafruit_feather_esp32s3_tft_169"
+    "adafruit_feather_esp32s3_tft_169",
+    "pie_esp32_s3_n8",
+    "pie_esp32_s3_n16r8",
 }
 ALIASES_BY_BOARD = {
     "circuitplayground_express": [
