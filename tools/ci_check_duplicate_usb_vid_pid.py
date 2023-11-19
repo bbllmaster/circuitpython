@@ -72,7 +72,9 @@ DEFAULT_CLUSTERLIST = {
     "0x249A:0x843E": ["adafruit_feather_esp32s3_tft_114"],
     "0x249A:0x823E": ["adafruit_feather_esp32s3_tft_147"],
     "0x249A:0x824E": ["adafruit_feather_esp32s3_tft_147_2mpsram"],
-    "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_169"]
+    "0x249A:0x821E": ["adafruit_feather_esp32s3_tft_169"],
+    "0x303A:0x8186": ["pie_esp32_s3_n8"],
+    "0x303A:0x8176": ["pie_esp32_s3_n16r8"],
 }
 
 cli_parser = argparse.ArgumentParser(
