@@ -113,13 +113,8 @@ static mp_obj_t displayio_ondiskbitmap_obj_get_pixel_shader(mp_obj_t self_in) {
 
 MP_DEFINE_CONST_FUN_OBJ_1(displayio_ondiskbitmap_get_pixel_shader_obj, displayio_ondiskbitmap_obj_get_pixel_shader);
 
-const mp_obj_property_t displayio_ondiskbitmap_pixel_shader_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&displayio_ondiskbitmap_get_pixel_shader_obj,
-              (mp_obj_t)MP_ROM_NONE,
-              (mp_obj_t)MP_ROM_NONE},
-};
-
+MP_PROPERTY_GETTER(displayio_ondiskbitmap_pixel_shader_obj,
+    (mp_obj_t)&displayio_ondiskbitmap_get_pixel_shader_obj);
 
 static const mp_rom_map_elem_t displayio_ondiskbitmap_locals_dict_table[] = {
     { MP_ROM_QSTR(MP_QSTR_height), MP_ROM_PTR(&displayio_ondiskbitmap_height_obj) },

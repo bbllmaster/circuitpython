@@ -12,6 +12,7 @@
 #include "shared-bindings/digitalio/Pull.h"
 #include "shared-bindings/microcontroller/__init__.h"
 #include "shared-bindings/microcontroller/Pin.h"
+#include "shared-bindings/memorymap/AddressRange.h"
 
 #include "src/rp2040/hardware_regs/include/hardware/platform_defs.h"
 #include "src/rp2_common/hardware_clocks/include/hardware/clocks.h"
@@ -56,6 +57,19 @@ static void *_interrupt_arg[NUM_PIOS][NUM_PIO_STATE_MACHINES];
 
 static void rp2pio_statemachine_interrupt_handler(void);
 
+// Workaround for sdk bug: https://github.com/raspberrypi/pico-sdk/issues/1878
+// This workaround can be removed when we upgrade to sdk 2.0.1
+static inline void sm_config_set_in_pin_count_issue1878(pio_sm_config *c, uint in_count) {
+    #if PICO_PIO_VERSION == 0
+    // can't be changed from 32 on PIO v0
+    ((void)c);
+    valid_params_if(HARDWARE_PIO, in_count == 32);
+    #else
+    valid_params_if(HARDWARE_PIO, in_count && in_count <= 32);
+    c->shiftctrl = (c->shiftctrl & ~PIO_SM0_SHIFTCTRL_IN_COUNT_BITS) |
+        ((in_count & 0x1fu) << PIO_SM0_SHIFTCTRL_IN_COUNT_LSB);
+    #endif
+}
 static void rp2pio_statemachine_set_pull(uint32_t pull_pin_up, uint32_t pull_pin_down, uint32_t pins_we_use) {
     for (size_t i = 0; i < NUM_BANK0_GPIOS; i++) {
         bool used = pins_we_use & (1 << i);
@@ -180,6 +194,33 @@ static uint add_program(PIO pio, const pio_program_t *program, int offset) {
     }
 }
 
+static enum pio_fifo_join compute_fifo_type(int fifo_type_in, bool rx_fifo, bool tx_fifo) {
+    if (fifo_type_in != PIO_FIFO_JOIN_AUTO) {
+        return fifo_type_in;
+    }
+    if (!rx_fifo) {
+        return PIO_FIFO_JOIN_TX;
+    }
+    if (!tx_fifo) {
+        return PIO_FIFO_JOIN_RX;
+    }
+    return PIO_FIFO_JOIN_NONE;
+}
+
+static int compute_fifo_depth(enum pio_fifo_join join) {
+    if (join == PIO_FIFO_JOIN_TX || join == PIO_FIFO_JOIN_RX) {
+        return 8;
+    }
+
+    #if PICO_PIO_VERSION > 0
+    if (join == PIO_FIFO_JOIN_PUTGET) {
+        return 0;
+    }
+    #endif
+
+    return 4;
+}
+
 bool rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
     const uint16_t *program, size_t program_len,
     size_t frequency,
@@ -199,7 +240,9 @@ bool rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
     bool user_interruptible,
     bool sideset_enable,
     int wrap_target, int wrap,
-    int offset
+    int offset,
+    int fifo_type,
+    int mov_status_type, int mov_status_n
     ) {
     // Create a program id that isn't the pointer so we can store it without storing the original object.
     uint32_t program_id = ~((uint32_t)program);
@@ -343,15 +386,27 @@ bool rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
 
     sm_config_set_wrap(&c, wrap_target, wrap);
     sm_config_set_in_shift(&c, in_shift_right, auto_push, push_threshold);
-    sm_config_set_out_shift(&c, out_shift_right, auto_pull, pull_threshold);
+    #if PICO_PIO_VERSION > 0
+    sm_config_set_in_pin_count_issue1878(&c, in_pin_count);
+    #endif
 
-    enum pio_fifo_join join = PIO_FIFO_JOIN_NONE;
-    if (!rx_fifo) {
-        join = PIO_FIFO_JOIN_TX;
-    } else if (!tx_fifo) {
-        join = PIO_FIFO_JOIN_RX;
+    sm_config_set_out_shift(&c, out_shift_right, auto_pull, pull_threshold);
+    sm_config_set_out_pin_count(&c, out_pin_count);
+
+    sm_config_set_set_pin_count(&c, set_pin_count);
+
+    enum pio_fifo_join join = compute_fifo_type(fifo_type, rx_fifo, tx_fifo);
+
+    self->fifo_depth = compute_fifo_depth(join);
+
+    #if PICO_PIO_VERSION > 0
+    if (fifo_type == PIO_FIFO_JOIN_TXPUT || fifo_type == PIO_FIFO_JOIN_TXGET) {
+        self->rxfifo_obj.base.type = &memorymap_addressrange_type;
+        common_hal_memorymap_addressrange_construct(&self->rxfifo_obj, (uint8_t *)self->pio->rxf_putget[self->state_machine], 4 * sizeof(uint32_t));
+    } else {
+        self->rxfifo_obj.base.type = NULL;
     }
-    self->fifo_depth = (join == PIO_FIFO_JOIN_NONE) ? 4 : 8;
+    #endif
 
     if (rx_fifo) {
         self->rx_dreq = pio_get_dreq(self->pio, self->state_machine, false);
@@ -370,6 +425,11 @@ bool rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
     self->init_len = init_len;
 
     sm_config_set_fifo_join(&c, join);
+
+    // TODO: these arguments
+    // int mov_status_type, int mov_status_n,
+    // int set_count, int out_count
+
     self->sm_config = c;
 
     // no DMA allocated
@@ -519,7 +579,10 @@ void common_hal_rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
     bool auto_push, uint8_t push_threshold, bool in_shift_right,
     bool user_interruptible,
     int wrap_target, int wrap,
-    int offset) {
+    int offset,
+    int fifo_type,
+    int mov_status_type,
+    int mov_status_n) {
 
     // First, check that all pins are free OR already in use by any PIO if exclusive_pin_use is false.
     uint32_t pins_we_use = wait_gpio_mask;
@@ -585,7 +648,7 @@ void common_hal_rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
             pull_up |= jmp_mask;
         }
         if (jmp_pull == PULL_DOWN) {
-            pull_up |= jmp_mask;
+            pull_down |= jmp_mask;
         }
     }
     if (initial_pin_direction & (pull_up | pull_down)) {
@@ -610,7 +673,9 @@ void common_hal_rp2pio_statemachine_construct(rp2pio_statemachine_obj_t *self,
         true /* claim pins */,
         user_interruptible,
         sideset_enable,
-        wrap_target, wrap, offset);
+        wrap_target, wrap, offset,
+        fifo_type,
+        mov_status_type, mov_status_n);
     if (!ok) {
         mp_raise_RuntimeError(MP_ERROR_TEXT("All state machines in use"));
     }
@@ -1044,6 +1109,8 @@ bool common_hal_rp2pio_statemachine_background_write(rp2pio_statemachine_obj_t *
         false);
 
     common_hal_mcu_disable_interrupts();
+    // Acknowledge any previous pending interrupt
+    dma_hw->ints0 |= 1u << channel;
     MP_STATE_PORT(background_pio)[channel] = self;
     dma_hw->inte0 |= 1u << channel;
     irq_set_mask_enabled(1 << DMA_IRQ_0, true);
@@ -1087,6 +1154,30 @@ bool common_hal_rp2pio_statemachine_get_writing(rp2pio_statemachine_obj_t *self)
 int common_hal_rp2pio_statemachine_get_pending(rp2pio_statemachine_obj_t *self) {
     return self->pending_buffers;
 }
+
+int common_hal_rp2pio_statemachine_get_offset(rp2pio_statemachine_obj_t *self) {
+    uint8_t pio_index = pio_get_index(self->pio);
+    uint8_t sm = self->state_machine;
+    uint8_t offset = _current_program_offset[pio_index][sm];
+    return offset;
+}
+
+int common_hal_rp2pio_statemachine_get_pc(rp2pio_statemachine_obj_t *self) {
+    uint8_t pio_index = pio_get_index(self->pio);
+    PIO pio = pio_instances[pio_index];
+    uint8_t sm = self->state_machine;
+    return pio_sm_get_pc(pio, sm);
+}
+
+mp_obj_t common_hal_rp2pio_statemachine_get_rxfifo(rp2pio_statemachine_obj_t *self) {
+    #if PICO_PIO_VERSION > 0
+    if (self->rxfifo_obj.base.type) {
+        return MP_OBJ_FROM_PTR(&self->rxfifo_obj);
+    }
+    #endif
+    return mp_const_none;
+}
+
 
 // Use a compile-time constant for MP_REGISTER_POINTER so the preprocessor will
 // not split the expansion across multiple lines.

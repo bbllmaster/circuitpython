@@ -39,7 +39,7 @@
 //|            # Pad control register is updated using an MP-safe atomic XOR
 //|            pad_ctrl ^= (d << 4)
 //|            pad_ctrl &= 0x00000030
-//|            pads_bank0[p*4+0x3004:p*4+0x3008] = pad_ctrl.to_bytes(4, "little")
+//|            pads_bank0[p*4+0x1004:p*4+0x1008] = pad_ctrl.to_bytes(4, "little")
 //|
 //|        def rp2040_get_pad_drive(p):
 //|            pads_bank0 = memorymap.AddressRange(start=0x4001C000, length=0x4000)
@@ -51,10 +51,14 @@
 //|
 //|        # print GPIO16 pad drive strength
 //|        print(rp2040_get_pad_drive(16))
+//|
+//|     Note that the above example does **not** work on RP2350 because base
+//|     address and  organization of the "pads0" registers changed compared
+//|     to the RP2040.
 //|     """
 //|
 
-//|     def __init__(self, *, start, length) -> None:
+//|     def __init__(self, *, start: int, length: int) -> None:
 //|         """Constructs an address range starting at ``start`` and ending at
 //|         ``start + length``. An exception will be raised if any of the
 //|         addresses are invalid or protected."""

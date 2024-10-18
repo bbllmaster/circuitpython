@@ -85,12 +85,9 @@ static mp_obj_t vectorio_rectangle_obj_set_width(mp_obj_t self_in, mp_obj_t widt
 }
 MP_DEFINE_CONST_FUN_OBJ_2(vectorio_rectangle_set_width_obj, vectorio_rectangle_obj_set_width);
 
-const mp_obj_property_t vectorio_rectangle_width_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&vectorio_rectangle_get_width_obj,
-              (mp_obj_t)&vectorio_rectangle_set_width_obj,
-              MP_ROM_NONE},
-};
+MP_PROPERTY_GETSET(vectorio_rectangle_width_obj,
+    (mp_obj_t)&vectorio_rectangle_get_width_obj,
+    (mp_obj_t)&vectorio_rectangle_set_width_obj);
 
 //|     height: int
 //|     """The height of the rectangle in pixels."""
@@ -107,12 +104,9 @@ static mp_obj_t vectorio_rectangle_obj_set_height(mp_obj_t self_in, mp_obj_t hei
 }
 MP_DEFINE_CONST_FUN_OBJ_2(vectorio_rectangle_set_height_obj, vectorio_rectangle_obj_set_height);
 
-const mp_obj_property_t vectorio_rectangle_height_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&vectorio_rectangle_get_height_obj,
-              (mp_obj_t)&vectorio_rectangle_set_height_obj,
-              MP_ROM_NONE},
-};
+MP_PROPERTY_GETSET(vectorio_rectangle_height_obj,
+    (mp_obj_t)&vectorio_rectangle_get_height_obj,
+    (mp_obj_t)&vectorio_rectangle_set_height_obj);
 
 //|     color_index: int
 //|     """The color_index of the rectangle in 1 based index of the palette."""
@@ -129,12 +123,9 @@ static mp_obj_t vectorio_rectangle_obj_set_color_index(mp_obj_t self_in, mp_obj_
 }
 MP_DEFINE_CONST_FUN_OBJ_2(vectorio_rectangle_set_color_index_obj, vectorio_rectangle_obj_set_color_index);
 
-const mp_obj_property_t vectorio_rectangle_color_index_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&vectorio_rectangle_get_color_index_obj,
-              (mp_obj_t)&vectorio_rectangle_set_color_index_obj,
-              MP_ROM_NONE},
-};
+MP_PROPERTY_GETSET(vectorio_rectangle_color_index_obj,
+    (mp_obj_t)&vectorio_rectangle_get_color_index_obj,
+    (mp_obj_t)&vectorio_rectangle_set_color_index_obj);
 
 // Documentation for properties inherited from VectorShape.
 

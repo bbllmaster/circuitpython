@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-04 12:55-0600\n"
-"PO-Revision-Date: 2023-11-16 15:03+0000\n"
-"Last-Translator: Jeff Epler <jepler@gmail.com>\n"
+"PO-Revision-Date: 2024-10-06 01:15+0000\n"
+"Last-Translator: Diamond Rivero <diamant3@proton.me>\n"
 "Language-Team: fil\n"
 "Language: fil\n"
 "MIME-Version: 1.0\n"
@@ -15,13 +15,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 "
 "|| n % 10 == 6 || n % 10 == 9);\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: main.c
 msgid ""
 "\n"
 "Code done running.\n"
 msgstr ""
+"\n"
+"Code ay tapos na sa pagtakbo\n"
 
 #: main.c
 msgid ""
@@ -416,6 +418,10 @@ msgstr "'data' kailangan ng integer arguments"
 msgid "'label' requires 1 argument"
 msgstr "'label' kailangan ng 1 argument"
 
+#: py/emitnative.c
+msgid "'not' not implemented"
+msgstr ""
+
 #: py/compile.c
 msgid "'return' outside function"
 msgstr "'return' sa labas ng function"
@@ -662,12 +668,12 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr ""
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr ""
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
 msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
@@ -1189,11 +1195,13 @@ msgstr ""
 msgid "Interrupted by output function"
 msgstr ""
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1313,6 +1321,7 @@ msgid "MAC address was invalid"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1388,10 +1397,6 @@ msgstr ""
 
 #: shared-bindings/socketpool/SocketPool.c
 msgid "Name or service not known"
-msgstr ""
-
-#: py/qstr.c
-msgid "Name too long"
 msgstr ""
 
 #: shared-bindings/displayio/TileGrid.c
@@ -1550,8 +1555,9 @@ msgid "Not supported JPEG standard"
 msgstr ""
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
+msgid "Number of data_pins must be %d or %d, not %d"
 msgstr ""
 
 #: shared-bindings/util.c
@@ -1758,6 +1764,8 @@ msgstr ""
 #: main.c
 msgid "Press any key to enter the REPL. Use CTRL-D to reload.\n"
 msgstr ""
+"Pindutin ang kahit anong key para pumasok sa REPL. Gamitin ang CTRL-D para "
+"mag-reload\n"
 
 #: main.c
 msgid "Pretending to deep sleep until alarm, CTRL-C or file write.\n"
@@ -1785,24 +1793,24 @@ msgstr "Pull hindi ginagamit kapag ang direksyon ay output."
 
 #: ports/raspberrypi/common-hal/countio/Counter.c
 msgid "RISE_AND_FALL not available on this chip"
-msgstr ""
+msgstr "RISE_AND_FALL ay hindi pwede sa chip na ito"
 
 #: shared-module/displayio/OnDiskBitmap.c
 msgid "RLE-compressed BMP not supported"
-msgstr ""
+msgstr "RLE-compressed BMP ay hindi suportado"
 
 #: ports/stm/common-hal/os/__init__.c
 msgid "RNG DeInit Error"
-msgstr ""
+msgstr "Error sa RNG DeInit"
 
 #: ports/stm/common-hal/os/__init__.c
 msgid "RNG Init Error"
-msgstr ""
+msgstr "Error sa RNG Init"
 
 #: ports/atmel-samd/common-hal/busio/UART.c ports/cxd56/common-hal/busio/UART.c
 #: ports/nordic/common-hal/busio/UART.c ports/stm/common-hal/busio/UART.c
 msgid "RS485"
-msgstr ""
+msgstr "RS485"
 
 #: ports/espressif/common-hal/busio/UART.c
 #: ports/mimxrt10xx/common-hal/busio/UART.c
@@ -1834,11 +1842,11 @@ msgstr ""
 
 #: supervisor/shared/bluetooth/bluetooth.c
 msgid "Reconnecting"
-msgstr ""
+msgstr "Kumokonekta"
 
 #: shared-bindings/epaperdisplay/EPaperDisplay.c
 msgid "Refresh too soon"
-msgstr ""
+msgstr "sobrang aga mag-refresh"
 
 #: shared-bindings/canio/RemoteTransmissionRequest.c
 msgid "RemoteTransmissionRequests limited to 8 bytes"
@@ -1850,7 +1858,7 @@ msgstr ""
 
 #: ports/espressif/common-hal/espidf/__init__.c
 msgid "Requested resource not found"
-msgstr ""
+msgstr "Hiniling na resource ay hindi nakita"
 
 #: ports/atmel-samd/common-hal/audioio/AudioOut.c
 msgid "Right channel unsupported"
@@ -1866,64 +1874,65 @@ msgstr "Tumatakbo sa safe mode! Hindi tumatakbo ang nai-save na code.\n"
 
 #: shared-module/sdcardio/SDCard.c
 msgid "SD card CSD format not supported"
-msgstr ""
+msgstr "SD card CSD na format ay hindi suportado"
 
 #: ports/cxd56/common-hal/sdioio/SDCard.c
 msgid "SDCard init"
-msgstr ""
+msgstr "pag-init ng SDCard"
 
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
 msgid "SDIO GetCardInfo Error %d"
-msgstr ""
+msgstr "Error ng SDIO GetCardInfo %d"
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
-msgstr ""
+msgid "SDIO Init Error %x"
+msgstr "Error sa pag-init ng SDIO %x"
 
 #: ports/espressif/common-hal/busio/SPI.c
 msgid "SPI configuration failed"
-msgstr ""
+msgstr "Nabigo sa SPI configuration"
 
 #: ports/stm/common-hal/busio/SPI.c
 msgid "SPI init error"
-msgstr ""
+msgstr "error sa pag-init ng SPI"
 
 #: ports/raspberrypi/common-hal/busio/SPI.c
 msgid "SPI peripheral in use"
-msgstr ""
+msgstr "SPI peripheral ay ginagamit"
 
 #: ports/stm/common-hal/busio/SPI.c
 msgid "SPI re-init"
-msgstr ""
+msgstr "pag re-init ng SPI"
 
 #: shared-bindings/is31fl3741/FrameBuffer.c
 msgid "Scale dimensions must divide by 3"
-msgstr ""
+msgstr "Scale dimensions ay kailangan i-divide sa 3"
 
 #: ports/espressif/common-hal/_bleio/Adapter.c
 #: ports/nordic/common-hal/_bleio/Adapter.c
 msgid "Scan already in progress. Stop with stop_scan."
-msgstr ""
+msgstr "Scan ay kasalukuyang ginagawa. Patigilin gamit ang stop_scan."
 
 #: ports/atmel-samd/common-hal/audiobusio/I2SOut.c
 #: ports/atmel-samd/common-hal/audiobusio/PDMIn.c
 msgid "Serializer in use"
-msgstr "Serializer ginagamit"
+msgstr "Serializer ay ginagamit"
 
 #: shared-bindings/ssl/SSLContext.c
 msgid "Server side context cannot have hostname"
-msgstr ""
+msgstr "Server side context ay hindi pwede magkaroon ng hostname"
 
 #: ports/cxd56/common-hal/camera/Camera.c
 msgid "Size not supported"
-msgstr ""
+msgstr "Size ay hindi suportado"
 
 #: shared-bindings/alarm/SleepMemory.c shared-bindings/memorymap/AddressRange.c
 #: shared-bindings/nvm/ByteArray.c
 msgid "Slice and value different lengths."
-msgstr "Slice at value iba't ibang haba."
+msgstr "Slice at value ay iba iba ang haba."
 
 #: shared-bindings/displayio/Bitmap.c shared-bindings/displayio/Group.c
 #: shared-bindings/displayio/TileGrid.c
@@ -1935,11 +1944,11 @@ msgstr "Hindi suportado ang Slices"
 #: ports/espressif/common-hal/socketpool/SocketPool.c
 #: ports/raspberrypi/common-hal/socketpool/SocketPool.c
 msgid "SocketPool can only be used with wifi.radio"
-msgstr ""
+msgstr "SocketPool ay pwede lang gamitin sa wifi.radio"
 
 #: shared-bindings/aesio/aes.c
 msgid "Source and destination buffers must be the same length"
-msgstr ""
+msgstr "Ang pinagmulan at patutunguhan ng buffer ay dapat na pareho ang haba"
 
 #: shared-bindings/paralleldisplaybus/ParallelBus.c
 msgid "Specify exactly one of data0 or data_pins"
@@ -1973,21 +1982,9 @@ msgstr ""
 msgid "The length of rgb_pins must be 6, 12, 18, 24, or 30"
 msgstr ""
 
-#: shared-module/audiomixer/MixerVoice.c
-msgid "The sample's bits_per_sample does not match the mixer's"
-msgstr "Ang bits_per_sample ng sample ay hindi tugma sa mixer"
-
-#: shared-module/audiomixer/MixerVoice.c
-msgid "The sample's channel count does not match the mixer's"
-msgstr "Ang channel count ng sample ay hindi tugma sa mixer"
-
-#: shared-module/audiomixer/MixerVoice.c
-msgid "The sample's sample rate does not match the mixer's"
-msgstr "Ang sample rate ng sample ay hindi tugma sa mixer"
-
-#: shared-module/audiomixer/MixerVoice.c
-msgid "The sample's signedness does not match the mixer's"
-msgstr "Ang signedness ng sample hindi tugma sa mixer"
+#: shared-module/audiodelays/Echo.c shared-module/audiomixer/MixerVoice.c
+msgid "The sample's %q does not match"
+msgstr ""
 
 #: supervisor/shared/safe_mode.c
 msgid "Third-party firmware fatal error."
@@ -2257,14 +2254,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -2421,6 +2416,10 @@ msgstr ""
 msgid "argsort is not implemented for flattened arrays"
 msgstr ""
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "argument must be None, an integer or a tuple of integers"
+msgstr ""
+
 #: py/compile.c
 msgid "argument name reused"
 msgstr ""
@@ -2519,7 +2518,7 @@ msgstr ""
 msgid "bits must be 32 or less"
 msgstr ""
 
-#: shared-bindings/audiomixer/Mixer.c
+#: shared-bindings/audiodelays/Echo.c shared-bindings/audiomixer/Mixer.c
 msgid "bits_per_sample must be 8 or 16"
 msgstr "bits_per_sample ay dapat 8 o 16"
 
@@ -2658,6 +2657,10 @@ msgid "can't do binary op between '%q' and '%q'"
 msgstr "hindi magawa ang binary op sa gitna ng '%q' at '%q'"
 
 #: py/emitnative.c
+msgid "can't do unary op of '%q'"
+msgstr ""
+
+#: py/emitnative.c
 msgid "can't implicitly convert '%q' to 'bool'"
 msgstr "hindi maaaring ma-convert ang ' %q' sa 'bool'"
 
@@ -2721,10 +2724,6 @@ msgstr ""
 
 #: py/objcomplex.c
 msgid "can't truncate-divide a complex number"
-msgstr ""
-
-#: extmod/moductypes.c
-msgid "can't unambiguously get sizeof scalar"
 msgstr ""
 
 #: extmod/modasyncio.c
@@ -3119,7 +3118,8 @@ msgstr "function nangangailangan ng keyword argument '%q'"
 msgid "function missing required positional argument #%d"
 msgstr "function nangangailangan ng positional argument #%d"
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr ""
@@ -3272,7 +3272,7 @@ msgstr ""
 msgid "input must be a dense ndarray"
 msgstr ""
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr ""
 
@@ -3460,7 +3460,7 @@ msgstr ""
 msgid "max_length must be 0-%d when fixed_length is %s"
 msgstr ""
 
-#: extmod/ulab/code/ndarray.c
+#: extmod/ulab/code/ndarray.c extmod/ulab/code/numpy/random/random.c
 msgid "maximum number of dimensions is "
 msgstr ""
 
@@ -3545,6 +3545,10 @@ msgstr "name '%q' ay hindi defined"
 msgid "name not defined"
 msgstr "name hindi na define"
 
+#: py/qstr.c
+msgid "name too long"
+msgstr ""
+
 #: py/persistentcode.c
 msgid "native code in .mpy unsupported"
 msgstr ""
@@ -3598,7 +3602,7 @@ msgstr "no binding para sa nonlocal, nahanap"
 msgid "no default packer"
 msgstr ""
 
-#: extmod/modrandom.c
+#: extmod/modrandom.c extmod/ulab/code/numpy/random/random.c
 msgid "no default seed"
 msgstr ""
 
@@ -3807,6 +3811,10 @@ msgstr "ord() umaasa ng character pero string ng %d haba ang nakita"
 msgid "out array is too small"
 msgstr ""
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "out has wrong type"
+msgstr ""
+
 #: extmod/ulab/code/numpy/vector.c
 msgid "out keyword is not supported for complex dtype"
 msgstr ""
@@ -3829,6 +3837,14 @@ msgstr ""
 
 #: shared-bindings/bitmaptools/__init__.c
 msgid "out of range of target"
+msgstr ""
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array has wrong type"
+msgstr ""
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array must be contiguous"
 msgstr ""
 
 #: py/objint_mpz.c
@@ -3957,6 +3973,10 @@ msgstr "script kompilasyon hindi supportado"
 msgid "set unsupported"
 msgstr ""
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "shape must be None, and integer or a tuple of integers"
+msgstr ""
+
 #: extmod/ulab/code/ndarray.c
 msgid "shape must be integer or tuple of integers"
 msgstr ""
@@ -3975,6 +3995,10 @@ msgstr "sign hindi maari sa integer format specifier 'c'"
 
 #: extmod/ulab/code/ulab_tools.c
 msgid "size is defined for ndarrays only"
+msgstr ""
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "size must match out.shape when used together"
 msgstr ""
 
 #: py/nativeglue.c
@@ -4050,18 +4074,6 @@ msgstr "indeks ng string wala sa sakop"
 msgid "string indices must be integers, not %s"
 msgstr "ang indeks ng string ay dapat na integer, hindi %s"
 
-#: extmod/moductypes.c
-msgid "struct: can't index"
-msgstr ""
-
-#: extmod/moductypes.c
-msgid "struct: index out of range"
-msgstr "struct: index hindi maabot"
-
-#: extmod/moductypes.c
-msgid "struct: no fields"
-msgstr "struct: walang fields"
-
 #: py/objarray.c py/objstr.c
 msgid "substring not found"
 msgstr "substring hindi nahanap"
@@ -4073,10 +4085,6 @@ msgstr "super() hindi mahanap ang sarili"
 #: extmod/modjson.c
 msgid "syntax error in JSON"
 msgstr "sintaks error sa JSON"
-
-#: extmod/moductypes.c
-msgid "syntax error in uctypes descriptor"
-msgstr "may pagkakamali sa sintaks sa uctypes descriptor"
 
 #: extmod/modtime.c
 msgid "ticks interval overflow"
@@ -4185,10 +4193,6 @@ msgstr "type kumuhuha ng 1 o 3 arguments"
 #: py/objint_longlong.c
 msgid "ulonglong too large"
 msgstr "ulonglong masyadong malaki"
-
-#: py/emitnative.c
-msgid "unary op %q not implemented"
-msgstr "unary op %q hindi implemented"
 
 #: py/parse.c
 msgid "unexpected indent"
@@ -4381,6 +4385,30 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "The sample's bits_per_sample does not match the mixer's"
+#~ msgstr "Ang bits_per_sample ng sample ay hindi tugma sa mixer"
+
+#~ msgid "The sample's channel count does not match the mixer's"
+#~ msgstr "Ang channel count ng sample ay hindi tugma sa mixer"
+
+#~ msgid "The sample's sample rate does not match the mixer's"
+#~ msgstr "Ang sample rate ng sample ay hindi tugma sa mixer"
+
+#~ msgid "The sample's signedness does not match the mixer's"
+#~ msgstr "Ang signedness ng sample hindi tugma sa mixer"
+
+#~ msgid "struct: index out of range"
+#~ msgstr "struct: index hindi maabot"
+
+#~ msgid "struct: no fields"
+#~ msgstr "struct: walang fields"
+
+#~ msgid "syntax error in uctypes descriptor"
+#~ msgstr "may pagkakamali sa sintaks sa uctypes descriptor"
+
+#~ msgid "unary op %q not implemented"
+#~ msgstr "unary op %q hindi implemented"
 
 #~ msgid "EXTINT channel already in use"
 #~ msgstr "Ginagamit na ang EXTINT channel"

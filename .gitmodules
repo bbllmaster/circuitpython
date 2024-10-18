@@ -10,7 +10,7 @@
 	url = https://github.com/atgreen/libffi
 [submodule "lib/berkeley-db-1.xx"]
 	path = lib/berkeley-db-1.xx
-	url = https://github.com/pfalcon/berkeley-db-1.xx
+	url = https://github.com/micropython/berkeley-db-1.xx
 [submodule "tools/uf2"]
 	path = tools/uf2
 	url = https://github.com/Microsoft/uf2.git
@@ -143,10 +143,11 @@
 [submodule "ports/espressif/esp-idf"]
 	path = ports/espressif/esp-idf
 	url = https://github.com/adafruit/esp-idf.git
-	branch = circuitpython-v5.3
+	branch = circuitpython-v5.3.1
 [submodule "ports/espressif/esp-protocols"]
 	path = ports/espressif/esp-protocols
-	url = https://github.com/espressif/esp-protocols.git
+	url = https://github.com/adafruit/esp-protocols.git
+	branch = circuitpython
 [submodule "ports/espressif/esp-camera"]
 	path = ports/espressif/esp-camera
 	url = https://github.com/adafruit/esp32-camera.git
@@ -344,8 +345,7 @@
 	url = https://github.com/adafruit/Adafruit_CircuitPython_Wave.git
 [submodule "ports/raspberrypi/lib/Pico-PIO-USB"]
 	path = ports/raspberrypi/lib/Pico-PIO-USB
-	url = https://github.com/adafruit/Pico-PIO-USB.git
-	branch = sdk2_fix
+	url = https://github.com/sekigon-gonnoc/Pico-PIO-USB.git
 [submodule "lib/micropython-lib"]
 	path = lib/micropython-lib
 	url = https://github.com/micropython/micropython-lib.git

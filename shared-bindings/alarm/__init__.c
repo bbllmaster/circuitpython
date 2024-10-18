@@ -196,7 +196,7 @@ static mp_obj_t alarm_exit_and_deep_sleep_until_alarms(size_t n_args, const mp_o
     common_hal_alarm_set_deep_sleep_alarms(n_args, pos_args, num_dios, dios_array);
 
     // Raise an exception, which will be processed in main.c.
-    mp_raise_type_arg(&mp_type_DeepSleepRequest, NULL);
+    mp_raise_type(&mp_type_DeepSleepRequest);
 
     // Doesn't get here.
     return mp_const_none;
