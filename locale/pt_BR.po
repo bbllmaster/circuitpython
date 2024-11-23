@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-04 12:55-0600\n"
-"PO-Revision-Date: 2024-10-16 21:15+0000\n"
+"PO-Revision-Date: 2024-11-11 07:05+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.8.2\n"
 
 #: main.c
 msgid ""
@@ -200,6 +200,10 @@ msgstr "%q deve ser <= %u"
 msgid "%q must be >= %d"
 msgstr "o %q deve ser >= %d"
 
+#: shared-module/audiofilters/Filter.c
+msgid "%q must be a %q object, %q, or %q"
+msgstr "%q deve ser um objeto %q, %q ou %q"
+
 #: shared-bindings/analogbufio/BufferedIn.c
 msgid "%q must be a bytearray or array of type 'H' or 'B'"
 msgstr "%q deve ser um bytearray ou uma matriz do tipo 'H' ou 'B'"
@@ -281,7 +285,8 @@ msgstr "%q() sem %q()"
 msgid "%q, %q, and %q must all be the same length"
 msgstr "todos os %q, %q, e %q devem ter mesmo comprimento"
 
-#: py/objint.c shared-bindings/storage/__init__.c
+#: py/objint.c shared-bindings/_bleio/Connection.c
+#: shared-bindings/storage/__init__.c
 msgid "%q=%q"
 msgstr "%q=%q"
 
@@ -564,6 +569,10 @@ msgstr "Já está anunciando."
 #: ports/atmel-samd/common-hal/canio/Listener.c
 msgid "Already have all-matches listener"
 msgstr "Já há um ouvinte com todas as correspondências"
+
+#: ports/espressif/common-hal/_bleio/__init__.c
+msgid "Already in progress"
+msgstr "Já em andamento"
 
 #: ports/espressif/bindings/espnow/ESPNow.c
 #: ports/espressif/common-hal/espulp/ULP.c
@@ -1304,6 +1313,7 @@ msgid "Invalid socket for TLS"
 msgstr "Soquete inválido para o TLS"
 
 #: ports/espressif/common-hal/espidf/__init__.c
+#: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Invalid state"
 msgstr "Estado inválido"
 
@@ -2019,7 +2029,8 @@ msgstr "A exceção acima foi a causa direta da seguinte exceção:"
 msgid "The length of rgb_pins must be 6, 12, 18, 24, or 30"
 msgstr "O comprimento dos rgb_pins devem ser 6, 12, 18, 24, ou 30"
 
-#: shared-module/audiodelays/Echo.c shared-module/audiomixer/MixerVoice.c
+#: shared-module/audiodelays/Echo.c shared-module/audiofilters/Filter.c
+#: shared-module/audiomixer/MixerVoice.c
 msgid "The sample's %q does not match"
 msgstr "Não há correspondência nas amostras %q"
 
@@ -2570,7 +2581,8 @@ msgstr "os tamanhos do bitmap devem coincidir"
 msgid "bits must be 32 or less"
 msgstr "bits deve ser 32 ou menos"
 
-#: shared-bindings/audiodelays/Echo.c shared-bindings/audiomixer/Mixer.c
+#: shared-bindings/audiodelays/Echo.c shared-bindings/audiofilters/Filter.c
+#: shared-bindings/audiomixer/Mixer.c
 msgid "bits_per_sample must be 8 or 16"
 msgstr "bits_per_sample deve ser 8 ou 16"
 
@@ -3252,10 +3264,6 @@ msgstr "os índices devem ser inteiros"
 #: extmod/ulab/code/ndarray.c
 msgid "indices must be integers, slices, or Boolean lists"
 msgstr "os índices devem ser números inteiros, fatias ou listas booleanas"
-
-#: ports/espressif/common-hal/busio/I2C.c
-msgid "init I2C"
-msgstr "inicialização do I2C"
 
 #: extmod/ulab/code/scipy/optimize/optimize.c
 msgid "initial values must be iterable"
@@ -4447,6 +4455,9 @@ msgstr "zi deve ser de um tipo float"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi deve estar na forma (n_section, 2)"
+
+#~ msgid "init I2C"
+#~ msgstr "inicialização do I2C"
 
 #~ msgid "The sample's bits_per_sample does not match the mixer's"
 #~ msgstr "A amostragem bits_per_sample não coincide com a do mixer"

@@ -6,14 +6,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-04 12:55-0600\n"
-"PO-Revision-Date: 2024-06-18 19:09+0000\n"
-"Last-Translator: Xfox20 <136956349+Xfox20@users.noreply.github.com>\n"
+"PO-Revision-Date: 2024-10-23 01:15+0000\n"
+"Last-Translator: Sokromatrix <kroschewski1971@gmail.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: main.c
 msgid ""
@@ -200,6 +200,10 @@ msgstr "%q muss <= %u sein"
 msgid "%q must be >= %d"
 msgstr "%q muss >= %d sein"
 
+#: shared-module/audiofilters/Filter.c
+msgid "%q must be a %q object, %q, or %q"
+msgstr ""
+
 #: shared-bindings/analogbufio/BufferedIn.c
 msgid "%q must be a bytearray or array of type 'H' or 'B'"
 msgstr "%q muss ein Bytearray oder ein Array vom Typ 'H' oder 'B' sein"
@@ -283,7 +287,8 @@ msgstr "%q() ohne %q()"
 msgid "%q, %q, and %q must all be the same length"
 msgstr "%q, %q und %q müssen alle die gleiche Länge haben"
 
-#: py/objint.c shared-bindings/storage/__init__.c
+#: py/objint.c shared-bindings/_bleio/Connection.c
+#: shared-bindings/storage/__init__.c
 msgid "%q=%q"
 msgstr "%q=%q"
 
@@ -415,7 +420,7 @@ msgstr "'await' außerhalb einer Funktion"
 
 #: py/compile.c
 msgid "'break'/'continue' outside loop"
-msgstr "'break'/'continue' ausserhalb einer Schleife"
+msgstr "'break'/'continue' außerhalb der Schleife"
 
 #: py/compile.c
 msgid "'data' requires at least 2 arguments"
@@ -431,7 +436,7 @@ msgstr "'label' erfordert genau ein Argument"
 
 #: py/emitnative.c
 msgid "'not' not implemented"
-msgstr ""
+msgstr "'not' nicht implementiert"
 
 #: py/compile.c
 msgid "'return' outside function"
@@ -565,6 +570,10 @@ msgstr "Bereits am Anbieten (advertising)."
 msgid "Already have all-matches listener"
 msgstr "All-Matchers-Listener bereits vorhanden"
 
+#: ports/espressif/common-hal/_bleio/__init__.c
+msgid "Already in progress"
+msgstr ""
+
 #: ports/espressif/bindings/espnow/ESPNow.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: shared-module/memorymonitor/AllocationAlarm.c
@@ -684,7 +693,7 @@ msgstr "Die Pufferlänge %d ist zu groß. Sie muss kleiner als %d sein"
 #: shared-module/sdcardio/SDCard.c
 #, c-format
 msgid "Buffer must be a multiple of %d bytes"
-msgstr ""
+msgstr "Puffer muss ein Vielfaches von %d Bytes sein"
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -899,7 +908,7 @@ msgstr "Die Zielkapazität ist kleiner als destination_length."
 
 #: shared-module/jpegio/JpegDecoder.c
 msgid "Device error or wrong termination of input stream"
-msgstr ""
+msgstr "Gerätefehler oder falsche Terminierung des Eingangsstroms"
 
 #: ports/nordic/common-hal/audiobusio/I2SOut.c
 msgid "Device in use"
@@ -1087,7 +1096,7 @@ msgstr "Gruppe schon benutzt"
 
 #: supervisor/shared/safe_mode.c
 msgid "Hard fault: memory access or instruction error."
-msgstr ""
+msgstr "Harter Fehler: Speicherzugriff- oder Anweisungsfehler."
 
 #: ports/mimxrt10xx/common-hal/busio/SPI.c
 #: ports/mimxrt10xx/common-hal/busio/UART.c ports/stm/common-hal/busio/I2C.c
@@ -1231,7 +1240,7 @@ msgstr "Ungültiger %q"
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
 #: shared-module/aurora_epaper/aurora_framebuffer.c
 msgid "Invalid %q and %q"
-msgstr ""
+msgstr "Ungültiges %q und %q"
 
 #: ports/atmel-samd/common-hal/microcontroller/Pin.c
 #: ports/espressif/common-hal/dotclockframebuffer/DotClockFramebuffer.c
@@ -1300,6 +1309,7 @@ msgid "Invalid socket for TLS"
 msgstr "Ungültiges Socket für TLS"
 
 #: ports/espressif/common-hal/espidf/__init__.c
+#: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Invalid state"
 msgstr "Ungültiger Zustand"
 
@@ -1342,7 +1352,7 @@ msgstr "MAC Adresse war ungültig"
 #: ports/espressif/common-hal/_bleio/Characteristic.c
 #: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
-msgstr ""
+msgstr "MITM-Sicherheit wird nicht unterstützt"
 
 #: shared-bindings/is31fl3741/IS31FL3741.c
 msgid "Mapping must be a tuple"
@@ -1387,7 +1397,7 @@ msgstr "jmp_pin fehlt. %q[%u] springt basierend auf dem Pin"
 
 #: shared-module/storage/__init__.c
 msgid "Mount point directory missing"
-msgstr ""
+msgstr "Einhängepunktverzeichnis fehlt"
 
 #: shared-bindings/busio/UART.c shared-bindings/displayio/Group.c
 msgid "Must be a %q subclass."
@@ -1547,7 +1557,7 @@ msgstr "Kein Timer verfügbar"
 
 #: shared-module/usb/core/Device.c
 msgid "No usb host port initialized"
-msgstr ""
+msgstr "Kein USB-Host-Port initialisiert"
 
 #: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Nordic system firmware out of memory"
@@ -1768,7 +1778,7 @@ msgstr "Pins muss ein geteiltes PWM-Stück sein"
 
 #: shared-module/usb/core/Device.c
 msgid "Pipe error"
-msgstr ""
+msgstr "Pipe-Fehler"
 
 #: py/builtinhelp.c
 msgid "Plus any modules on the filesystem\n"
@@ -1984,7 +1994,7 @@ msgstr "Gib genau einen von data0 oder data_pins an"
 
 #: supervisor/shared/safe_mode.c
 msgid "Stack overflow. Increase stack size."
-msgstr ""
+msgstr "Stapelüberlauf. Stapelgröße erhöhen."
 
 #: shared-bindings/alarm/time/TimeAlarm.c
 msgid "Supply one of monotonic_time or epoch_time"
@@ -2013,7 +2023,8 @@ msgstr ""
 msgid "The length of rgb_pins must be 6, 12, 18, 24, or 30"
 msgstr "Die Länge von rgb_pins muss 6, 12, 18, 24 oder 30 betragen"
 
-#: shared-module/audiodelays/Echo.c shared-module/audiomixer/MixerVoice.c
+#: shared-module/audiodelays/Echo.c shared-module/audiofilters/Filter.c
+#: shared-module/audiomixer/MixerVoice.c
 msgid "The sample's %q does not match"
 msgstr ""
 
@@ -2066,7 +2077,7 @@ msgstr "Zu viele Kanäle im sample."
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
 msgid "Too many descriptors"
-msgstr ""
+msgstr "Zu viele Deskriptoren"
 
 #: shared-module/displayio/__init__.c
 msgid "Too many display busses; forgot displayio.release_displays() ?"
@@ -2145,7 +2156,7 @@ msgstr "Der UUID-Wert ist kein str-, int- oder Byte-Puffer"
 
 #: ports/raspberrypi/common-hal/memorymap/AddressRange.c
 msgid "Unable to access unaligned IO register"
-msgstr ""
+msgstr "Zugriff auf nicht ausgerichtetes EA-Register nicht möglich"
 
 #: ports/atmel-samd/common-hal/audiobusio/I2SOut.c
 #: ports/atmel-samd/common-hal/audioio/AudioOut.c
@@ -2287,7 +2298,7 @@ msgstr ""
 #: ports/espressif/common-hal/_bleio/Adapter.c
 #: ports/espressif/common-hal/dualbank/__init__.c
 msgid "Update failed"
-msgstr ""
+msgstr "Aktualisierung fehlgeschlagen"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
@@ -2496,7 +2507,7 @@ msgstr "Array/Bytes auf der rechten Seite erforderlich"
 
 #: py/asmxtensa.c
 msgid "asm overflow"
-msgstr ""
+msgstr "ASM-Überlauf"
 
 #: py/compile.c
 msgid "async for/with outside async function"
@@ -2562,7 +2573,8 @@ msgstr "Bitmap-Größen müssen übereinstimmen"
 msgid "bits must be 32 or less"
 msgstr "bits müssen 32 oder kleiner sein"
 
-#: shared-bindings/audiodelays/Echo.c shared-bindings/audiomixer/Mixer.c
+#: shared-bindings/audiodelays/Echo.c shared-bindings/audiofilters/Filter.c
+#: shared-bindings/audiomixer/Mixer.c
 msgid "bits_per_sample must be 8 or 16"
 msgstr "Es müssen 8 oder 16 bits_per_sample sein"
 
@@ -2596,7 +2608,7 @@ msgstr "Der Puffer ist zu klein für die angefragten Bytes"
 
 #: py/emitbc.c
 msgid "bytecode overflow"
-msgstr ""
+msgstr "Bytecode-Überlauf"
 
 #: py/objarray.c
 msgid "bytes length not a multiple of item size"
@@ -2702,7 +2714,7 @@ msgstr "Eine binäre Operation zwischen '%q' und '%q' ist nicht möglich"
 
 #: py/emitnative.c
 msgid "can't do unary op of '%q'"
-msgstr ""
+msgstr "kann keine unäre Operation von '%q' durchführen"
 
 #: py/emitnative.c
 msgid "can't implicitly convert '%q' to 'bool'"
@@ -3210,7 +3222,7 @@ msgstr "import * nicht auf Modulebene"
 
 #: py/persistentcode.c
 msgid "incompatible .mpy arch"
-msgstr ""
+msgstr "inkompatible .mpy-Architektur"
 
 #: py/persistentcode.c
 msgid "incompatible .mpy file"
@@ -3249,10 +3261,6 @@ msgstr "Indizes müssen Integer sein"
 #: extmod/ulab/code/ndarray.c
 msgid "indices must be integers, slices, or Boolean lists"
 msgstr "Indizes müssen Integer, Slices oder Boolesche Listen sein"
-
-#: ports/espressif/common-hal/busio/I2C.c
-msgid "init I2C"
-msgstr "initialisiere I2C"
 
 #: extmod/ulab/code/scipy/optimize/optimize.c
 msgid "initial values must be iterable"
@@ -3354,7 +3362,7 @@ msgstr "Das Intervall muss im Bereich %s-%s sein"
 
 #: py/compile.c
 msgid "invalid arch"
-msgstr ""
+msgstr "ungültige Architektur"
 
 #: shared-bindings/bitmaptools/__init__.c
 #, c-format
@@ -3441,6 +3449,8 @@ msgstr ""
 #: py/argcheck.c
 msgid "keyword argument(s) not implemented - use normal args instead"
 msgstr ""
+"Schlüsselwortargument(e) nicht umgesetzt - nutze stattdessen normale "
+"Argumente"
 
 #: py/emitinlinethumb.c py/emitinlinextensa.c
 msgid "label '%q' not defined"
@@ -3596,7 +3606,7 @@ msgstr "Dieser Name ist nirgends definiert worden (Schreibweise kontrollieren)"
 
 #: py/qstr.c
 msgid "name too long"
-msgstr ""
+msgstr "Name zu lang"
 
 #: py/persistentcode.c
 msgid "native code in .mpy unsupported"
@@ -3946,11 +3956,11 @@ msgstr "Port muss >= 0 sein"
 
 #: py/compile.c
 msgid "positional arg after **"
-msgstr ""
+msgstr "Positionsargument nach **"
 
 #: py/compile.c
 msgid "positional arg after keyword arg"
-msgstr ""
+msgstr "Positionsargument nach Schlüsselwortargument"
 
 #: py/objint_mpz.c
 msgid "pow() 3rd argument cannot be 0"
@@ -4444,6 +4454,9 @@ msgstr "zi muss eine Gleitkommazahl sein"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi muss die Form (n_section, 2) haben"
+
+#~ msgid "init I2C"
+#~ msgstr "initialisiere I2C"
 
 #~ msgid "The sample's bits_per_sample does not match the mixer's"
 #~ msgstr ""

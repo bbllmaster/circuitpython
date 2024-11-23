@@ -198,6 +198,10 @@ msgstr "%q musí být <= %u"
 msgid "%q must be >= %d"
 msgstr "%q musí být >= %d"
 
+#: shared-module/audiofilters/Filter.c
+msgid "%q must be a %q object, %q, or %q"
+msgstr ""
+
 #: shared-bindings/analogbufio/BufferedIn.c
 msgid "%q must be a bytearray or array of type 'H' or 'B'"
 msgstr "%q musí být bytearray nebo pole typu 'H' nebo 'B'"
@@ -279,7 +283,8 @@ msgstr ""
 msgid "%q, %q, and %q must all be the same length"
 msgstr "%q, %q, a %q musí mít všechny shodnou délku"
 
-#: py/objint.c shared-bindings/storage/__init__.c
+#: py/objint.c shared-bindings/_bleio/Connection.c
+#: shared-bindings/storage/__init__.c
 msgid "%q=%q"
 msgstr "%q=%q"
 
@@ -560,6 +565,10 @@ msgstr "Již propagujeme."
 #: ports/atmel-samd/common-hal/canio/Listener.c
 msgid "Already have all-matches listener"
 msgstr "Již existuje posluchač pro všechny zprávy"
+
+#: ports/espressif/common-hal/_bleio/__init__.c
+msgid "Already in progress"
+msgstr ""
 
 #: ports/espressif/bindings/espnow/ESPNow.c
 #: ports/espressif/common-hal/espulp/ULP.c
@@ -1289,6 +1298,7 @@ msgid "Invalid socket for TLS"
 msgstr "Chybný soket pro TLS"
 
 #: ports/espressif/common-hal/espidf/__init__.c
+#: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Invalid state"
 msgstr "Chybný stav"
 
@@ -1990,7 +2000,8 @@ msgstr "Výše uvedená výjimka byla přímá příčina následující výjimk
 msgid "The length of rgb_pins must be 6, 12, 18, 24, or 30"
 msgstr "Počet prvků rgb_pin musí být 6, 12, 18, 24, nebo 30"
 
-#: shared-module/audiodelays/Echo.c shared-module/audiomixer/MixerVoice.c
+#: shared-module/audiodelays/Echo.c shared-module/audiofilters/Filter.c
+#: shared-module/audiomixer/MixerVoice.c
 msgid "The sample's %q does not match"
 msgstr ""
 
@@ -2530,7 +2541,8 @@ msgstr "velikosti bitmapy musí odpovídat"
 msgid "bits must be 32 or less"
 msgstr "počet bitů nesmí přesáhnout 32"
 
-#: shared-bindings/audiodelays/Echo.c shared-bindings/audiomixer/Mixer.c
+#: shared-bindings/audiodelays/Echo.c shared-bindings/audiofilters/Filter.c
+#: shared-bindings/audiomixer/Mixer.c
 msgid "bits_per_sample must be 8 or 16"
 msgstr ""
 
@@ -3203,10 +3215,6 @@ msgstr ""
 #: extmod/ulab/code/ndarray.c
 msgid "indices must be integers, slices, or Boolean lists"
 msgstr ""
-
-#: ports/espressif/common-hal/busio/I2C.c
-msgid "init I2C"
-msgstr "inicializace I2C"
 
 #: extmod/ulab/code/scipy/optimize/optimize.c
 msgid "initial values must be iterable"
@@ -4384,6 +4392,9 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "init I2C"
+#~ msgstr "inicializace I2C"
 
 #~ msgid "Buffer length must be a multiple of 512"
 #~ msgstr "Délka vyrovnávací paměti musí být násobkem 512"
