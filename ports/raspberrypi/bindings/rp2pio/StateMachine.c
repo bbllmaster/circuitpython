@@ -24,9 +24,13 @@
 //| import memorymap
 //|
 //| FifoType = Literal["auto", "txrx", "tx", "rx", "txput", "txget", "putget"]
+//| """A type representing one of the strings ``"auto"``, ``"txrx"``, ``"tx"``, ``"rx"``, ``"txput"``, ``"txget"`` or ``"putget"``. These values are supported on RP2350. For type-checking only, not actually defined in CircuitPython."""
 //| FifoType_piov0 = Literal["auto", "txrx", "tx", "rx"]
+//| """A type representing one of the strings ``"auto"``, ``"txrx"``, ``"tx"``, or ``"rx"``. These values are supported on both RP2350 and RP2040. For type-checking only, not actually defined in CircuitPython."""
 //| MovStatusType = Literal["txfifo", "rxfifo", "irq"]
+//| """A type representing one of the strings ``"txfifo"``, ``"rxfifo"``, or ``"irq"``. These values are supported on RP2350. For type-checking only, not actually defined in CircuitPython."""
 //| MovStatusType_piov0 = Literal["txfifo"]
+//| """A type representing the string ``"txfifo"``. This value is supported on RP2350 and RP2040. For type-checking only, not actually defined in CircuitPython."""
 //|
 //| class StateMachine:
 //|     """A single PIO StateMachine
@@ -64,6 +68,7 @@
 //|         initial_set_pin_direction: int = 0x1F,
 //|         first_sideset_pin: Optional[microcontroller.Pin] = None,
 //|         sideset_pin_count: int = 1,
+//|         sideset_pindirs: bool = False,
 //|         initial_sideset_pin_state: int = 0,
 //|         initial_sideset_pin_direction: int = 0x1F,
 //|         sideset_enable: bool = False,
@@ -133,6 +138,7 @@
 //|         :param int in_pin_count: the count of consecutive pins to use with IN starting at first_in_pin
 //|         :param int set_pin_count: the count of consecutive pins to use with SET starting at first_set_pin
 //|         :param int sideset_pin_count: the count of consecutive pins to use with a side set starting at first_sideset_pin. Does not include sideset enable
+//|         :param bool sideset_pindirs: `True` to indicate that the side set values should be applied to the PINDIRs and not the PINs
 //|         :param int pio_version: The version of the PIO peripheral required by the program. The constructor will raise an error if the actual hardware is not compatible with this program version.
 //|         :param bool auto_push: When True, automatically save data from input shift register
 //|              (ISR) into the rx FIFO when an IN instruction shifts more than push_threshold bits
@@ -150,8 +156,8 @@
 //|         :param int wrap: The instruction after which to wrap to the ``wrap``
 //|             instruction. As a special case, -1 (the default) indicates the
 //|             last instruction of the program.
-//|         :param FifoType fifo_type: How the program accessess the FIFOs. PIO version 0 only supports a subset of values.
-//|         :param MovStatusType mov_status_type: What condition the ``mov status`` instruction checks. PIO version 0 only supports a subset of values.
+//|         :param FifoType fifo_type: How the program accessess the FIFOs. PIO version 0 in the RP2040 only supports a subset of values, `FifoType_piov0`.
+//|         :param MovStatusType mov_status_type: What condition the ``mov status`` instruction checks. PIO version 0 in the RP2040 only supports a subset of values, `MovStatusType_piov0`.
 //|         :param MovStatusType mov_status_n: The FIFO depth or IRQ the ``mov status`` instruction checks for. For ``mov_status irq`` this includes the encoding of the ``next``/``prev`` selection bits.
 //|         """
 //|         ...
@@ -173,7 +179,8 @@ static mp_obj_t rp2pio_statemachine_make_new(const mp_obj_type_t *type, size_t n
            ARG_first_in_pin, ARG_in_pin_count,
            ARG_pull_in_pin_up, ARG_pull_in_pin_down,
            ARG_first_set_pin, ARG_set_pin_count, ARG_initial_set_pin_state, ARG_initial_set_pin_direction,
-           ARG_first_sideset_pin, ARG_sideset_pin_count, ARG_initial_sideset_pin_state, ARG_initial_sideset_pin_direction,
+           ARG_first_sideset_pin, ARG_sideset_pin_count, ARG_sideset_pindirs,
+           ARG_initial_sideset_pin_state, ARG_initial_sideset_pin_direction,
            ARG_sideset_enable,
            ARG_jmp_pin, ARG_jmp_pin_pull,
            ARG_exclusive_pin_use,
@@ -211,6 +218,7 @@ static mp_obj_t rp2pio_statemachine_make_new(const mp_obj_type_t *type, size_t n
 
         { MP_QSTR_first_sideset_pin, MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
         { MP_QSTR_sideset_pin_count, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = 1} },
+        { MP_QSTR_sideset_pindirs, MP_ARG_KW_ONLY | MP_ARG_BOOL, {.u_bool = false} },
         { MP_QSTR_initial_sideset_pin_state, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = 0} },
         { MP_QSTR_initial_sideset_pin_direction, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = 0x1f} },
 
@@ -329,7 +337,8 @@ static mp_obj_t rp2pio_statemachine_make_new(const mp_obj_type_t *type, size_t n
         first_out_pin, out_pin_count, args[ARG_initial_out_pin_state].u_int, args[ARG_initial_out_pin_direction].u_int,
         first_in_pin, in_pin_count, args[ARG_pull_in_pin_up].u_int, args[ARG_pull_in_pin_down].u_int,
         first_set_pin, set_pin_count, args[ARG_initial_set_pin_state].u_int, args[ARG_initial_set_pin_direction].u_int,
-        first_sideset_pin, sideset_pin_count, args[ARG_initial_sideset_pin_state].u_int, args[ARG_initial_sideset_pin_direction].u_int,
+        first_sideset_pin, sideset_pin_count, args[ARG_sideset_pindirs].u_bool,
+        args[ARG_initial_sideset_pin_state].u_int, args[ARG_initial_sideset_pin_direction].u_int,
         args[ARG_sideset_enable].u_bool,
         jmp_pin, jmp_pin_pull,
         0,
