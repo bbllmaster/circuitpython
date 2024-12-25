@@ -1,3 +1,4 @@
+#pragma once
 #define MICROPY_HW_BOARD_NAME "Adafruit Feather RP2040 DVI"
 #define MICROPY_HW_MCU_NAME "rp2040"
 
