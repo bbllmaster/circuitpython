@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2020 Scott Shawcroft for Adafruit Industries
+ * Copyright (c) 2021 Scott Shawcroft for Adafruit Industries
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,5 +25,28 @@
  */
 
 #include "supervisor/board.h"
+
+#include "bindings/picodvi/Framebuffer.h"
+#include "shared-module/displayio/__init__.h"
+#include "shared-bindings/framebufferio/FramebufferDisplay.h"
+
+void board_init(void) {
+    picodvi_framebuffer_obj_t *fb = &allocate_display_bus()->picodvi;
+    fb->base.type = &picodvi_framebuffer_type;
+    common_hal_picodvi_framebuffer_construct(fb, 320, 240,
+        &pin_GPIO1, &pin_GPIO0,
+        &pin_GPIO3, &pin_GPIO2,
+        &pin_GPIO5, &pin_GPIO4,
+        &pin_GPIO7, &pin_GPIO6,
+        8);
+
+    framebufferio_framebufferdisplay_obj_t *display = &allocate_display()->framebuffer_display;
+    display->base.type = &framebufferio_framebufferdisplay_type;
+    common_hal_framebufferio_framebufferdisplay_construct(
+        display,
+        MP_OBJ_FROM_PTR(fb),
+        0,
+        true);
+}
 
 // Use the MP_WEAK supervisor/shared/board.c versions of routines not defined here.
