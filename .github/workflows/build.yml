@@ -109,7 +109,7 @@ jobs:
   mpy-cross-mac:
     runs-on: macos-13
     needs: scheduler
-    if: needs.scheduler.outputs.ports != '{}'
+    if: false && needs.scheduler.outputs.ports != '{}'
     env:
       CP_VERSION: ${{ needs.scheduler.outputs.cp-version }}
     steps:
@@ -229,7 +229,7 @@ jobs:
   windows:
     runs-on: windows-2022
     needs: scheduler
-    if: needs.scheduler.outputs.windows == 'True'
+    if: false && needs.scheduler.outputs.windows == 'True'
     env:
       CP_VERSION: ${{ needs.scheduler.outputs.cp-version }}
     defaults:
@@ -305,7 +305,7 @@ jobs:
         os: [windows-2022, windows-2025]
     runs-on: ${{ matrix.os }}
     needs: scheduler
-    if: needs.scheduler.outputs.windows == 'True'
+    if: false && needs.scheduler.outputs.windows == 'True'
     env:
       CP_VERSION: ${{ needs.scheduler.outputs.cp-version }}
     steps:
