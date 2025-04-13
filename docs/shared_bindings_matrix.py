@@ -79,6 +79,7 @@ INCLUDE_BOARD={
      "adafruit_feather_esp32s3_tft_147",
      "adafruit_feather_esp32s3_tft_147_2mpsram",
      "adafruit_feather_esp32s3_tft_169",
+     "nodemcu_esp32c2",
  }
 
 ALIASES_BRAND_NAMES = {
