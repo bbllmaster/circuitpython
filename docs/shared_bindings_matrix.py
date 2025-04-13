@@ -56,7 +56,7 @@ ALIASES_BY_BOARD = {
     "gemma_m0": ["gemma_m0_pycon2018"],
 }
 
-INCLUDE_BOARD={
+INCLUDE_BOARD = {
      "adafruit_feather_rp2040_dvi",
      "vcc_gnd_yd_rp2040",
      "yd_esp32_s3_n16r8",
