@@ -229,7 +229,7 @@ jobs:
   windows:
     runs-on: windows-2022
     needs: scheduler
-    if: false && needs.scheduler.outputs.windows == 'True'
+    if: false  && needs.scheduler.outputs.windows == 'True'
     env:
       CP_VERSION: ${{ needs.scheduler.outputs.cp-version }}
     defaults:
