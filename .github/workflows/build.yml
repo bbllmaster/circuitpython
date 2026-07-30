@@ -257,7 +257,8 @@ jobs:
         # that I can find. (dhalbert)
         pip install --break-system-packages wheel
         # requirements-dev.txt doesn't install on windows. (with msys2 python)
-        # instead, pick a subset for what we want to do
+        # Pick the subset we need for these builds, but avoid jsonschema here:
+        # its rpds-py dependency builds with maturin, which rejects x86_64-cygwin.
         pip install --break-system-packages cascadetoml jinja2 typer click intelhex
         # check that installed packages work....?
         which python; python --version; python -c "import cascadetoml"
