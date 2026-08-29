@@ -47,6 +47,7 @@ SUPPORTED_PORTS = [
 ]
 INCLUDE_BOARD = {
     "adafruit_feather_rp2040_dvi",
+    "adafruit_feather_rp2040_hdmi",
     "vcc_gnd_yd_rp2040",
     "yd_esp32_s3_n16r8",
     "yd_esp32_s3_n16r8",
