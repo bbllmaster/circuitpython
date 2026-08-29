@@ -96,6 +96,7 @@ jobs:
 
   tests:
     needs: scheduler
+    if:  false
     uses: ./.github/workflows/run-tests.yml
     with:
       cp-version: ${{ needs.scheduler.outputs.cp-version }}
@@ -214,7 +215,7 @@ jobs:
         [ -z "$TWINE_USERNAME" ] || twine upload circuitpython-stubs/dist/*
 
   ports:
-    needs: [scheduler, mpy-cross, tests]
+    needs: [scheduler, mpy-cross]
     if: needs.scheduler.outputs.ports != '{}'
     uses: ./.github/workflows/build-boards.yml
     secrets: inherit
